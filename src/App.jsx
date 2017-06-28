@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Chatbar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
-
+import Navbar from './NavBar.jsx';
 
 const users = {
   currentUser: {name: "Bob"},
@@ -20,12 +20,20 @@ const users = {
 };
 
 
+
 class App extends Component {
 
   constructor(props){
     super(props);
     this.state = users;
   }
+
+  componentDidMount() {
+    this.socket = new WebSocket('ws://localhost:3001/');
+    this.socket.addEventListener('open', (event) => {
+      console.log('IT\'S ALIVE!');
+    });
+  };
 
   makeNewMessage = (message) => {
       console.log(message.message, message.username);
