@@ -16,6 +16,8 @@ class MessageList extends Component {
     return (
     <main className="messages">
         {allMessages}
+        <div className="message system">
+     </div>
     </main>
     );
   }
