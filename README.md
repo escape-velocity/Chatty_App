@@ -1,8 +1,22 @@
-Chatty App
+                -Chatty App-
 
-A chat application built with React and webpack. Users can send and receive messages to other users online and update their username.
+A client-side SPA (single-page app) built with ReactJS
 
-Stack: React, Webpack, Websockets, Babel, ExpressJS, NodeJSs
+It contains a chat log displaying messages and notifications (like Slack)
+and also an input field to change your name and an input field to send a message.
+
+The client-side app communicates with a server via WebSockets for multi-user real-time updates.
+
+No persistent database is involved; the focus is on the client-side experience
+
+Stack:
+ReactJS
+Webpack with Babel
+JSX
+ES6 
+Webpack dev server
+WebSockets using Node package ws on the server-side 
+Native WebSockets on client side
 ```
 
 Install the dependencies and start the server.
