@@ -18,27 +18,21 @@ Webpack dev server
 WebSockets using Node package ws on the server-side 
 Native WebSockets on client side
 ```
+## ScreenShots
+!["This page shows two connected Chat clients.."](https://github.com/escape-velocity/Chatty_App/blob/master/images/Chatty%20App%20home%20screens.png)
 
-Install the dependencies and start the server.
+
+!["This shows the counter indicating # of connected Chat clients.."](https://github.com/escape-velocity/Chatty_App/blob/master/images/Counter%20showing%20users%20online.png)
+
 
 ```
-npm install
+Install the dependencies and start the server:
+npm install --save
 npm start
-open http://localhost:3000
+open http://localhost:3000 on several browsers to fully test 
 ```
-
-### Static Files
-
-You can store static files like images, fonts, etc in the `build` folder.
-
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
-
-
-```
-
 ### Dependencies
-
 * React
 * Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* [babel-loader]  (https://github.com/babel/babel-loader)
+* [webpack-dev-server]  (https://github.com/webpack/webpack-dev-server)
