@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentUser: {name: "Mr Fluffyface"},
+      currentUser: {name: "James Bond"},
       userCount: 0,
       messages: []
     };
