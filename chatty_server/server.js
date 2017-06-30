@@ -38,13 +38,22 @@ wss.on('connection', (ws) => {
 
 
 
-  ws.send('something');
+
 
   ws.on('message', function incoming(message) {
-    var incomingMsg = message;
-    incomingMsg.id = uuidV4();
-    var outGoingMsg = incomingMsg;
-    wss.broadcast(outGoingMsg);
+    var newMsg = JSON.parse(message);
+    newMsg.id = uuidV4();
+    if (newMsg.username) {
+      console.log('incoming message')
+      newMsg.type = 'incomingMessage';
+    } else {
+      console.log('incoming notiication')
+      newMsg.type = 'incomingNotification';
+    }
+    newMsg = JSON.stringify(newMsg);
+    wss.clients.forEach(function broadcast (client) {
+      client.send(newMsg);
+    });
     console.log('received: %s', JSON.parse(message).content);
 
   });

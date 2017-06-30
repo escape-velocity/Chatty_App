@@ -11,13 +11,13 @@ class MessageList extends Component {
     const allMessages = this.props.messageList.map((message) =>
            <Message messageContent={message.content}
                  username={message.username}
-                 key={message.id}/>
+                 key={message.id}
+                 type={message.type} />
      );
     return (
     <main className="messages">
         {allMessages}
-        <div className="message system">
-     </div>
+        
     </main>
     );
   }

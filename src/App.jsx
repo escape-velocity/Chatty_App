@@ -12,24 +12,35 @@ class App extends Component {
       currentUser: {name: "Mr Fluffyface"},
       messages: []
     };
-
-
-  this.makeNewMessage = this.makeNewMessage.bind(this);
-  this.newUserName = this.newUserName.bind(this);
-
-
+    this.makeNewMessage = this.makeNewMessage.bind(this);
+    this.newUserName = this.newUserName.bind(this);
   }
+  
+  componentDidMount() {
+    this.socket = new WebSocket('ws://localhost:3001/');
+    this.socket.onmessage = (event) => {
+      const newMessage = JSON.parse(event.data);
+      const newMessages = this.state.messages.concat(newMessage);
+      console.log(newMessages)
+      this.setState({
+        messages: newMessages
+      });
+    }
+  }
+
+
   makeNewMessage(message) {
       //console.log(message.message, message.username);
       const newMessage = {
-        type: 'incomingMessage',
-        username: message.username,
-        content: message.message
+        type: 'postMessage',
+        username: this.state.currentUser.name,
+        content: message
       };
       //const messages = this.state.messages.concat(newMessage);
-      this.state.messages.concat(newMessage);
+      // this.state.messages.concat(newMessage);
       //this.setState({messages: messages})
-      this.broadcastMessage(JSON.stringify(newMessage))
+      console.log("whyyyyyyy")
+      this.broadcastMessage(JSON.stringify(newMessage));
   }
 
   newUserName (username) {
@@ -37,11 +48,12 @@ class App extends Component {
     this.setState({ currentUser: { name: username } });
 
     const notification = {
-      type: 'incomingNotification',
-      content: '${previousName} changed their name to ${username}'
+      type: 'postNotification',
+      username: null,
+      content: `${previousName} changed their name to ${username}`
     };
 
-    this.socket.send(JSON.stringify(notification));
+    this.broadcastMessage(JSON.stringify(notification));
     console.log(notification);
   }
 
@@ -49,16 +61,6 @@ class App extends Component {
     this.socket.send(message);
   }
 
-  componentDidMount() {
-    this.socket = new WebSocket('ws://localhost:3001/');
-    this.socket.addEventListener('message', (event) => {
-      const newMessage = JSON.parse(event.data);
-      const newMessages = this.state.messages.concat(newMessage);
-      this.setState({
-        messages: newMessages
-      });
-    });
-  }
 
 
   render() {
@@ -69,7 +71,7 @@ class App extends Component {
         <MessageList messageList={this.state.messages}/>
         <ChatBar
           username={this.state.currentUser.name}
-          makeNewMessage={this.makeNewMessage}
+          handleMessage={this.makeNewMessage}
           newUserName={this.newUserName}
         />
       </div>
