@@ -6,8 +6,6 @@ class Chatbar extends Component {
 
   constructor(props){
     super(props);
-    //this.state = {username: this.props.currentUser,
-    //              message: ''}
   }
 
   handleMessageChange = (event) => {

@@ -5,7 +5,6 @@ class Message extends Component {
     super(props); 
     this.classname = 'message';
     if(this.props.type === 'incomingNotification'){
-      // console.log('blahhhhhhhh');
       this.classname += ' system'
     }
   }
