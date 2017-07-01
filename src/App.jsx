@@ -37,7 +37,6 @@ class App extends Component {
     }
   }
 
-
   makeNewMessage(message) {
       const newMessage = {
         type: 'postMessage',
@@ -60,21 +59,10 @@ class App extends Component {
     this.broadcastMessage(JSON.stringify(notification));
     console.log(notification);
   }
-
-  // countUsers(count) {
-  //   const userCount = {
-  //   type: "countNotification"
-  //   }  this.setState({userCount: incomingMessage.userCount})
-  // }
-
   broadcastMessage(message) {
     this.socket.send(message);
   }
-
-
-
   render() {
-    // console.log('rendering App')
     return (
       <div>
         <Navbar userCount={this.state.userCount}/>
