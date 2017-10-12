@@ -5,6 +5,8 @@ A client-side SPA (single-page app) built with ReactJS
 It contains a chat log displaying messages and notifications (like Slack)
 and also an input field to change your name and an input field to send a message.
 
+It also keeps track of # of logged in users.
+
 The client-side app communicates with a server via WebSockets for multi-user real-time updates.
 
 No persistent database is involved; the focus is on the client-side experience
